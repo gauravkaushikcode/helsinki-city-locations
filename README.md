@@ -15,20 +15,22 @@
   
 ### Client
   ## Heroku Client Deployment App Name :- hel-location-client
-  git subtree push --prefix helsinki-locations hel-heroku-client master
+  -- git subtree push --prefix helsinki-locations hel-heroku-client master
 
-  Where hel-heroku-client is remote for	https://git.heroku.com/hel-location-client.git
-  URL --> https://hel-location-client.herokuapp.com/
+  -- Where hel-heroku-client is remote for	https://git.heroku.com/hel-location-client.git
+  
+  -- URL --> https://hel-location-client.herokuapp.com/
 
   ## network.constants holds baseURL
-  baseURL: "https://hel-location-server.herokuapp.com/"
+  -- baseURL: "https://hel-location-server.herokuapp.com/"
 
 ### Server
   ## Heroku server Deployment App Name :- hel-location-server
-  git subtree push --prefix helsinki-city-locations-service hel-heroku-server master
+  -- git subtree push --prefix helsinki-city-locations-service hel-heroku-server master
 
-  Where hel-heroku-server is remote for	https://git.heroku.com/hel-location-server.git
-  URL --> https://hel-location-server.herokuapp.com/locations
+  -- Where hel-heroku-server is remote for	https://git.heroku.com/hel-location-server.git
+  
+  -- URL --> https://hel-location-server.herokuapp.com/locations
 
   ## For CORS handling Added following to LocationController
   @CrossOrigin(origins = "https://hel-location-client.herokuapp.com")
