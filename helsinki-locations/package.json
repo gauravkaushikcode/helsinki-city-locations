@@ -35,7 +35,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "publishToHeroku": "cd ../ && git subtree push --prefix helsinki-city-locations/helsinki-locations heroku-app-frontend-react-app master || true",
+    "publishToHeroku": "cd ../../ && git subtree push --prefix helsinki-city-locations/helsinki-locations heroku-app-frontend-react-app master || true",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
