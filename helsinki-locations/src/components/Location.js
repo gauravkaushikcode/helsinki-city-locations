@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import moment from "moment";
 
 import { Table } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -12,13 +13,12 @@ import MapModal from "./MapModal";
 class Location extends Component {
   constructor(props) {
     super(props);
+
+    let today = moment(),
+      time = moment(today).format("HH:mm:ss"),
+      day = today.day();
+
     this.state = {
-      locationInfo: {
-        id: "",
-        locationName: {},
-        location: {},
-        openingHours: {},
-      },
       addLocationError: false,
       addLocationErrorMsg: "",
       locationList: [],
@@ -30,7 +30,8 @@ class Location extends Component {
       },
       sortName: undefined,
       sortOrder: "asc",
-      open_close: "10:00:00/18:00:00",
+      currentTime: time,
+      currentDay: day,
     };
   }
   getUpdatedLocationList(holdAllLocationList) {
@@ -148,7 +149,6 @@ class Location extends Component {
       options,
       sortName,
       sortOrder,
-      open_close,
     } = this.state;
     return (
       <>
@@ -179,7 +179,7 @@ class Location extends Component {
               </tr>
             </thead>
             <tbody>
-              {locationList.map(({ id, name, location, openingHours }) => (
+              {locationList.map(({ id, name, location, opening_hours }) => (
                 <tr key={id}>
                   <td>
                     <span className="round">{id}</span>
@@ -199,7 +199,40 @@ class Location extends Component {
                       }}
                     />
                   </td>
-                  <td>{open_close}</td>
+                  <td>
+                    {opening_hours["hours"]
+                      .filter((hours) => hours !== null)
+                      .map(({ weekday_id, opens, closes, open24h }) => {
+                        if (
+                          this.state.currentDay === weekday_id &&
+                          opens != null &&
+                          closes != null &&
+                          this.state.currentTime > opens &&
+                          this.state.currentTime < closes
+                        ) {
+                          return (
+                            <p style={{ color: "green" }}>
+                              Open [Timings -- {opens}--{closes}]
+                            </p>
+                          );
+                        } else if (
+                          this.state.currentDay === weekday_id &&
+                          open24h === true
+                        ) {
+                          return <p style={{ color: "blue" }}>Open 24H</p>;
+                        } else if (this.state.currentDay === weekday_id) {
+                          return (
+                            <p key={weekday_id++} style={{ color: "red" }}>
+                              Closed [Timings -- {opens}--{closes}]
+                            </p>
+                          );
+                        }
+                        return null;
+                      })}
+                    <i style={{ whiteSpace: "pre-wrap", color: "grey" }}>
+                      {opening_hours["openinghours_exception"]}
+                    </i>
+                  </td>
                 </tr>
               ))}
             </tbody>

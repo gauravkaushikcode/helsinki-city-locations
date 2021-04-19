@@ -44,7 +44,7 @@ public class Hours {
     @JsonProperty("closes")
     @JsonFormat(pattern = "HH:mm:ss")
     public void setCloses(String value){
-                this.opens = value; }
+                this.closes = value; }
     @JsonProperty("open24h")
     public boolean getOpen24H() { return open24H; }
     @JsonProperty("open24h")

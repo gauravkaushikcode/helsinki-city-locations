@@ -34,16 +34,11 @@ public class LocationsService {
         ResponseEntity<HelsinkiInfo> responseEntity = restTemplate.getForEntity(
                 "http://open-api.myhelsinki.fi/v1/places/", HelsinkiInfo.class);
         HelsinkiInfo info = responseEntity.getBody();
-        List<Hours[]> hoursArr = Arrays.stream(info.getData())
-                .map(hours->hours.getOpeningHours().getHours())
-                              .collect(Collectors.toList());
-
-        isOpen(1, "10:00:00","18:00:00");
         return dynamicFilter(Arrays.stream(info.getData())
                               .collect(Collectors.toList()));
     }
     public MappingJacksonValue dynamicFilter(List<Object> locationList) {
-        SimpleBeanPropertyFilter filter = SimpleBeanPropertyFilter.filterOutAllExcept("id", "name", "location", "openingHours");
+        SimpleBeanPropertyFilter filter = SimpleBeanPropertyFilter.filterOutAllExcept("id", "name", "location", "opening_hours");
         FilterProvider filters = new SimpleFilterProvider().addFilter("DataFilter", filter);
         // Dynamic Filtering
         MappingJacksonValue mappingJacksonValue = new MappingJacksonValue(locationList);
