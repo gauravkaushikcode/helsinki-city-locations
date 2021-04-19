@@ -10,7 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 import java.io.IOException;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
+///http://localhost:3000 changes done for heroku deployment...
+@CrossOrigin(origins = "https://hel-location-client.herokuapp.com/")
 public class LocationController {
 
     @Autowired
