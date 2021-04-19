@@ -11,7 +11,7 @@ import java.io.IOException;
 
 @RestController
 ///http://localhost:3000 changes done for heroku deployment...
-@CrossOrigin(origins = "https://hel-location-client.herokuapp.com/")
+@CrossOrigin(origins = "https://hel-location-client.herokuapp.com")
 public class LocationController {
 
     @Autowired
