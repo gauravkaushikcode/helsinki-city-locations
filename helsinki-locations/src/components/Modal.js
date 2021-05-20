@@ -4,7 +4,7 @@ import { faWindowClose } from "@fortawesome/free-solid-svg-icons";
 import "../style/Modal.scss";
 import Map from "./Map";
 const lib = ["places"];
-const key = "AIzaSyDhZraldQfqqd2QAFraSywC4X5ID9YG91s";
+const key = "please add google key here";
 const Modal = ({ handleClose, show, defaultLocation }) => {
   const showHideClassName = show ? "modal display-block" : "modal display-none";
 
